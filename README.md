@@ -16,4 +16,4 @@ Automate the configuration of essential cron jobs on your servers. This script s
 To install and set up the cron jobs, run the following command:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/sadrazkh/cron-setup/main/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/sadrazkh/server_corn_setup/main/install.sh)"
