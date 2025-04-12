@@ -17,11 +17,12 @@ To install and set up the cron jobs, run the following command:
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/sadrazkh/server_corn_setup/main/install.sh)"
-
+```
 
 ```bash
 crontab -l
 
-
+```
 ```bash
 sudo systemctl status cron
+```
