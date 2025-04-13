@@ -2,7 +2,7 @@
 # install.sh - Force installation of the latest cron setup scripts without requiring authentication
 
 # Set your repository URL (public) and installation directory
-REPO_URL="https://github.com/sadrazkh/cron-setup.git"
+REPO_URL="https://github.com/sadrazkh/server_corn_setup.git"
 INSTALL_DIR="$HOME/cron-setup"
 
 echo "Checking for existing installation in $INSTALL_DIR..."
