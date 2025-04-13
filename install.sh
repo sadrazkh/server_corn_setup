@@ -1,26 +1,29 @@
 #!/bin/bash
-# install.sh - Force installation of the latest cron setup scripts without requiring authentication
+# install.sh - Force installation using updated repository URL without authentication
 
-# Set your repository URL (public) and installation directory
-REPO_URL="https://github.com/sadrazkh/server_corn_setup.git"
+# Set your updated repository URL (public) and installation directory
+REPO_URL="https://github.com/sadrazkh/your-new-repository.git"
 INSTALL_DIR="$HOME/cron-setup"
 
-echo "Checking for existing installation in $INSTALL_DIR..."
+echo "Checking if an old installation exists in $INSTALL_DIR..."
 
 if [ -d "$INSTALL_DIR" ]; then
-    echo "Existing installation found. Removing old version..."
+    echo "Old installation found at $INSTALL_DIR. Removing it now..."
     rm -rf "$INSTALL_DIR"
+    if [ $? -ne 0 ]; then
+        echo "Failed to remove the old installation. Exiting."
+        exit 1
+    fi
 fi
 
-echo "Cloning repository from $REPO_URL into $INSTALL_DIR..."
-git clone "$REPO_URL" "$INSTALL_DIR"
-
+echo "Cloning repository from updated URL: $REPO_URL"
+git clone --depth 1 "$REPO_URL" "$INSTALL_DIR"
 if [ $? -ne 0 ]; then
     echo "Error cloning repository. Aborting."
     exit 1
 fi
 
-cd "$INSTALL_DIR" || { echo "Failed to enter directory $INSTALL_DIR"; exit 1; }
+cd "$INSTALL_DIR" || { echo "Failed to change directory to $INSTALL_DIR"; exit 1; }
 chmod +x setup_cron.sh
 
 echo "Executing the new setup script..."
