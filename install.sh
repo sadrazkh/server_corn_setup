@@ -1,7 +1,7 @@
 #!/bin/bash
-# install.sh - Force installation of the latest cron setup scripts
+# install.sh - Force installation of the latest cron setup scripts without requiring authentication
 
-# Set your repository URL and installation directory
+# Set your repository URL (public) and installation directory
 REPO_URL="https://github.com/sadrazkh/cron-setup.git"
 INSTALL_DIR="$HOME/cron-setup"
 
@@ -20,10 +20,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cd "$INSTALL_DIR"
+cd "$INSTALL_DIR" || { echo "Failed to enter directory $INSTALL_DIR"; exit 1; }
 chmod +x setup_cron.sh
 
 echo "Executing the new setup script..."
-sudo ./setup_cron.sh
+./setup_cron.sh
 
 echo "Installation complete. The latest version of the scripts has been applied."
