@@ -1,24 +1,29 @@
 #!/bin/bash
-# install.sh - Installation script to clone repository and install cron jobs automatically
+# install.sh - Force installation of the latest cron setup scripts
 
-# Update this variable to match your repository URL, if needed.
-REPO_URL="https://github.com/sadrazkh/server_corn_setup.git"
+# Set your repository URL and installation directory
+REPO_URL="https://github.com/sadrazkh/cron-setup.git"
 INSTALL_DIR="$HOME/cron-setup"
 
-echo "Cloning repository from $REPO_URL..."
+echo "Checking for existing installation in $INSTALL_DIR..."
+
 if [ -d "$INSTALL_DIR" ]; then
-    echo "Directory $INSTALL_DIR already exists. Pulling latest changes."
-    cd "$INSTALL_DIR" || { echo "Failed to change directory"; exit 1; }
-    git pull
-else
-    git clone "$REPO_URL" "$INSTALL_DIR"
-    cd "$INSTALL_DIR" || { echo "Failed to change directory"; exit 1; }
+    echo "Existing installation found. Removing old version..."
+    rm -rf "$INSTALL_DIR"
 fi
 
-echo "Making setup script executable..."
+echo "Cloning repository from $REPO_URL into $INSTALL_DIR..."
+git clone "$REPO_URL" "$INSTALL_DIR"
+
+if [ $? -ne 0 ]; then
+    echo "Error cloning repository. Aborting."
+    exit 1
+fi
+
+cd "$INSTALL_DIR"
 chmod +x setup_cron.sh
 
-echo "Running setup script..."
+echo "Executing the new setup script..."
 sudo ./setup_cron.sh
 
-echo "Installation complete."
+echo "Installation complete. The latest version of the scripts has been applied."
