@@ -2,8 +2,8 @@
 # install.sh - Force installation using updated repository URL without authentication
 
 # Set your updated repository URL (public) and installation directory
-REPO_URL="https://github.com/sadrazkh/your-new-repository.git"
-INSTALL_DIR="$HOME/cron-setup"
+REPO_URL="https://github.com/sadrazkh/server_corn_setup"
+INSTALL_DIR="$HOME/server_corn_setup"
 
 echo "Checking if an old installation exists in $INSTALL_DIR..."
 
